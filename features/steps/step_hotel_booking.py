@@ -2,12 +2,12 @@ import time
 
 from behave import when, then, given
 from selenium import webdriver
-
+from webdriver_manager.chrome import ChromeDriverManager
 
 @given('Browser is launch')
 def step_impl(context):
     context.driver = webdriver.Chrome(
-        'C:\Program Files\chromedriver.exe')  # Optional argument, if not specified will search path.
+        ChromeDriverManager().install())  # Optional argument, if not specified will search path.
     context.driver.get('http://www.google.com/')
 
 

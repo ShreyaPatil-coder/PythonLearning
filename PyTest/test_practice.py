@@ -3,11 +3,14 @@ import time
 import pytest
 from selenium import webdriver
 
+from webdriver_manager.chrome import ChromeDriverManager
+
+
 class Test_abc():
     @pytest.fixture()
     def test_setup(self):
         self.driver = webdriver.Chrome(
-            'C:\Program Files\chromedriver.exe')
+            ChromeDriverManager().install())
         self.driver.get('http://automationpractice.com/index.php')
 
         yield
@@ -34,5 +37,3 @@ class Test_abc():
         success_message = self.driver.find_element_by_class_name("alert-success")
         value = success_message.text
         assert value == "Your message has been successfully sent to our team."
-
-

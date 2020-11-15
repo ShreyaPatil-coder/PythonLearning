@@ -2,6 +2,7 @@ import time
 
 import pytest
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class Test_Google():
@@ -9,7 +10,7 @@ class Test_Google():
     @pytest.fixture()
     def test_setup(self):
         self.driver = webdriver.Chrome(
-            'C:\Program Files\chromedriver.exe')  # Optional argument, if not specified will search path.
+            ChromeDriverManager().install())  # Optional argument, if not specified will search path.
         yield
         self.driver.quit()
 

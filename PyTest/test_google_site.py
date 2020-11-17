@@ -9,8 +9,9 @@ class Test_Google():
 
     @pytest.fixture()
     def test_setup(self):
-        self.driver = webdriver.Chrome(
-            ChromeDriverManager().install())  # Optional argument, if not specified will search path.
+        options = Options()
+        options.add_argument('--headless')
+        self.driver = SeleneDriver.wrap(webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options))
         yield
         self.driver.quit()
 

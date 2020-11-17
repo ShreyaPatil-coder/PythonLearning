@@ -2,13 +2,16 @@ import time
 
 from behave import given, when, then
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from webdriver_manager.chrome import ChromeDriverManager
 
 @given(u'Open the browser')
 def step_impl(context):
-    context.driver = webdriver.Chrome(
-        ChromeDriverManager().install())  # Optional argument, if not specified will search path.
+    options = Options()
+    options.add_argument('--headless')
+    context.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options)
+    # Optional argument, if not specified will search path. # Optional argument, if not specified will search path.
 
 
 @when(u'Open the google homepage which has search box')

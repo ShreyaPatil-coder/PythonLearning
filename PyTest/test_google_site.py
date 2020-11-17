@@ -2,6 +2,7 @@ import time
 
 import pytest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 
@@ -11,7 +12,7 @@ class Test_Google():
     def test_setup(self):
         options = Options()
         options.add_argument('--headless')
-        self.driver = SeleneDriver.wrap(webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options))
+        self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options)
         yield
         self.driver.quit()
 

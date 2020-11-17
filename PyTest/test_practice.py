@@ -9,8 +9,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 class Test_abc():
     @pytest.fixture()
     def test_setup(self):
-        self.driver = webdriver.Chrome(
-            ChromeDriverManager().install())
+        options = Options()
+        options.add_argument('--headless')
+        self.driver = SeleneDriver.wrap(webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options))
         self.driver.get('http://automationpractice.com/index.php')
 
         yield
